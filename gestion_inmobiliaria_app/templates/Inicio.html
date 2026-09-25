@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumina Inmobiliaria | Gestión de Propiedades</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* --- Variables de Color --- */
+        :root {
+            --primary-color: #0f172a; /* Azul oscuro */
+            --accent-color: #3b82f6;  /* Azul brillante */
+            --bg-color: #f8fafc;      /* Gris muy claro */
+            --text-color: #334155;    /* Gris texto */
+            --white: #ffffff;
+        }
+
+        /* --- Estilos Generales --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* --- Barra de Navegación --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        .nav-links a {
+            margin-left: 2rem;
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* --- Sección Principal (Hero) --- */
+        .hero {
+            height: 70vh;
+            background: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), 
+                        url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1920&q=80') center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            background-color: var(--accent-color);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn:hover {
+            background-color: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        /* --- Buscador Rápido --- */
+        .search-bar {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 10px;
+            display: flex;
+            gap: 1rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transform: translateY(-50%);
+            width: 80%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .search-bar input, .search-bar select {
+            flex: 1;
+            padding: 0.8rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .search-bar button {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 0 2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        /* --- Propiedades Destacadas --- */
+        .section-title {
+            text-align: center;
+            margin: 2rem 0 3rem;
+            font-size: 2.2rem;
+            color: var(--primary-color);
+        }
+
+        .properties {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            padding: 0 5%;
+            margin-bottom: 5rem;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            position: relative;
+        }
+
+        .tag {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--accent-color);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .price {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .address {
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-details {
+            display: flex;
+            justify-content: space-between;
+            color: #64748b;
+            font-size: 0.9rem;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 1rem;
+        }
+
+        .card-details i {
+            margin-right: 5px;
+            color: var(--accent-color);
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 3rem 20px;
+        }
+
+        footer p {
+            opacity: 0.8;
+            margin-bottom: 1rem;
+        }
+
+        .social-icons a {
+            color: var(--white);
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: var(--accent-color);
+        }
+
+        /* --- Responsividad --- */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero h1 { font-size: 2.5rem; }
+            .search-bar { flex-direction: column; width: 90%; transform: translateY(-20%); padding: 1rem; }
+            .search-bar button { padding: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="logo">Lumina<span>Inmobiliaria</span></a>
+        <div class="nav-links">
+            <a href="#">Inicio</a>
+            <a href="#">Propiedades</a>
+            <a href="#">Servicios</a>
+            <a href="#">Contacto</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <h1>Encuentra el hogar de tus sueños</h1>
+        <p>Gestión inmobiliaria transparente, moderna y adaptada a tus necesidades. Compramos, vendemos y arrendamos.</p>
+        <a href="#propiedades" class="btn">Ver Catálogo</a>
+    </header>
+
+    <div class="search-bar">
+        <input type="text" placeholder="Ubicación (Ej. Santiago, Concepción...)">
+        <select>
+            <option value="">Tipo de Propiedad</option>
+            <option value="casa">Casa</option>
+            <option value="departamento">Departamento</option>
+            <option value="terreno">Terreno</option>
+            <option value="local">Local Comercial</option>
+        </select>
+        <select>
+            <option value="">Operación</option>
+            <option value="venta">Venta</option>
+            <option value="arriendo">Arriendo</option>
+            <option value="Compra">Compra</option>
+        </select>
+        <button>Buscar</button>
+    </div>
+
+    <h2 class="section-title" id="propiedades">Propiedades Destacadas</h2>
+    
+    <section class="properties">
+        <div class="card">
+            <div class="tag">En Venta</div>
+            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80" alt="Casa moderna" class="card-img">
+            <div class="card-content">
+                <div class="price">$250,000 USD</div>
+                <h3 class="card-title">Villa Serena Minimalista</h3>
+                <p class="address"><i class="fas fa-map-marker-alt"></i> Las Condes, Santiago</p>
+                <div class="card-details">
+                    <span><i class="fas fa-bed"></i> 4 Hab</span>
+                    <span><i class="fas fa-bath"></i> 3 Baños</span>
+                    <span><i class="fas fa-ruler-combined"></i> 250 m²</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="tag">Arriendo</div>
+            <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=800&q=80" alt="Departamento" class="card-img">
+            <div class="card-content">
+                <div class="price">$850 USD / mes</div>
+                <h3 class="card-title">Apartamento Vista Mar</h3>
+                <p class="address"><i class="fas fa-map-marker-alt"></i> Viña del Mar, Valparaíso</p>
+                <div class="card-details">
+                    <span><i class="fas fa-bed"></i> 2 Hab</span>
+                    <span><i class="fas fa-bath"></i> 2 Baños</span>
+                    <span><i class="fas fa-ruler-combined"></i> 90 m²</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="tag">En Venta</div>
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="Casa familiar" class="card-img">
+            <div class="card-content">
+                <div class="price">$180,000 USD</div>
+                <h3 class="card-title">Casa Familiar Los Pinos</h3>
+                <p class="address"><i class="fas fa-map-marker-alt"></i> San Pedro de la Paz, Concepción</p>
+                <div class="card-details">
+                    <span><i class="fas fa-bed"></i> 3 Hab</span>
+                    <span><i class="fas fa-bath"></i> 2 Baños</span>
+                    <span><i class="fas fa-ruler-combined"></i> 160 m²</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Lumina Inmobiliaria. Todos los derechos reservados.</p>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </footer>
+
+</body>
+</html>

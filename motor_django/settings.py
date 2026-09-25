@@ -20,17 +20,19 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-0sfoj^lex0b@cclk-ft_fy+d72q+_ae$@)bw-8ymacu5gq%ube'
+SECRET_KEY = 'django-insecure-*+16iqky7px!6(*h=(w=17te2ph-rexdfg-^cvpc(8-znhvnc2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost','127.0.0.1']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+        # apps de django
+    'gestion_inmobiliaria_app',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
