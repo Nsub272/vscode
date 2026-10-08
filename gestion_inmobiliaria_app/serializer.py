@@ -6,4 +6,13 @@ class PaisSerializer(serializers.ModelSerializer):
         model = Pais
         #fields = '__all__' esta definicion trae todos los campos de la tabla
         fields = [ 'nombre_pais', 'nacionalidad', 'iso2', 'iso3']
-        
+
+class RegionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Region
+        fields = ['nombre_region', 'pais']
+
+class ProvinciaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Provincia
+        fields = ['nombre_provincia', 'region']
