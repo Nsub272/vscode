@@ -39,4 +39,15 @@ class Migration(migrations.Migration):
                 ('fecha_publicacion', models.DateTimeField(auto_now_add=True)),
             ],
         ),
+        migrations.CreateModel(
+            name='Transaccion',
+            fields=[
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('fecha', models.DateTimeField(auto_now_add=True)),
+                ('propiedad', models.ForeignKey(on_delete=models.deletion.CASCADE, to='gestion_inmobiliaria_app.propiedad')),
+                ('cliente', models.ForeignKey(on_delete=models.deletion.CASCADE, to='gestion_inmobiliaria_app.cliente')),
+            ],
+        ),
+
+        
     ]
